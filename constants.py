@@ -112,6 +112,7 @@ TENDER_STAT_COL = 'TenderStatus'
 TOT_DIST_COL = 'TotalDistance'
 UNLOAD_DIST_COL = 'UnloadedDistance'
 WT_UTIL_COL = 'WeightUtilization' 
+unused = unused
 
 #fuel cost variable for changing fuel cost for spot shipments
 FUEL_COST = fc.FUEL_COST
