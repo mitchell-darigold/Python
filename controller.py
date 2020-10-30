@@ -9,6 +9,7 @@ from dwelltime import DwellTime
 from model import Model
 from orderlevel import OrderLevel
 from stoplevel import StopLevel
+from stoplevel_nfr import StopLevel_NFR
 from view import View, InputLateOrderReasonCodesView, ExportLateOrBlankDateOrdersView
 
 
@@ -81,8 +82,8 @@ class Controller:
 							new_rows = stop_level.main()
 
 						elif self.model.tbl_name == const.STOP_LEVEL_NFR:
-							stop_level = StopLevel_NFR(df, name)
-							new_rows = stop_level.main()
+							stop_level_nfr = StopLevel_NFR(df, name)
+							new_rows = stop_level_nfr.main()
 
 						else:
 							new_rows = [(name,) + r for r in df.itertuples(index=False)]
