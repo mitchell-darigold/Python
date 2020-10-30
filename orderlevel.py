@@ -12,10 +12,15 @@ import utilities as util
 REPORT_NAME = 'Order Level Report'
 
 ACCS_COL = 'Accesorials'
-ACTUAL_DELIV_DATE_COL = 'ActualDeliveryDate'
-ACTUAL_SHIP_DATE_COL = 'ActualShipDate'
-ACTUAL_DELIV_DATE_DEPART_COL = 'ActualDelivDateDepart'
-ACTUAL_SHIP_DATE_DEPART_COL = 'ActualShipDateDepart'
+#ACTUAL_DELIV_DATE_COL = 'ActualDeliveryDate'
+#ACTUAL_SHIP_DATE_COL = 'ActualShipDate'
+#ACTUAL_DELIV_DATE_DEPART_COL = 'ActualDelivDateDepart'
+#ACTUAL_SHIP_DATE_DEPART_COL = 'ActualShipDateDepart'
+PICKUP_ARRIVE = 'PickupArrive'
+PICKUP_DEPART = 'PickupDepart'
+DELIVERY_ARRIVE = 'DeliveryArrive'
+DELIVERY_DEPART = 'DeliveryDepart'
+
 BUS_UNIT_COL = 'BusinessUnit'
 CANCEL_STATUS_COL = 'CancelStatus'
 DEST_CITY_COL = 'DestCity'
@@ -218,10 +223,10 @@ class OrderLevel:
 		self._set_measures_by_ship_dest()
 
 		for row in self.df.itertuples(index=False):
-			actual_deliv = getattr(row, ACTUAL_DELIV_DATE_COL)
-			actual_ship = getattr(row, ACTUAL_SHIP_DATE_COL)
-			actual_deliv_depart = getattr(row, ACTUAL_DELIV_DATE_DEPART_COL)
-			actual_ship_depart = getattr(row, ACTUAL_SHIP_DATE_DEPART_COL)
+			delivery_arrive = getattr(row, DELIVERY_ARRIVE)
+			pickup_arrive = getattr(row, PICKUP_ARRIVE)
+			delivery_depart = getattr(row, DELIVERY_DEPART)
+			pickup_depart = getattr(row, PICKUP_DEPART)
 			carrier = getattr(row, const.SERV_PROV_COL)
 			dest_city = getattr(row, DEST_CITY_COL)
 			dest_id = getattr(row, DEST_ID_COL)
@@ -260,22 +265,22 @@ class OrderLevel:
 
 			plan_ship = util.convert_to_datetime(plan_ship)
 			plan_deliv = util.convert_to_datetime(plan_deliv)
-			actual_ship = util.convert_to_datetime(actual_ship)
-			actual_deliv = util.convert_to_datetime(actual_deliv)
-			actual_deliv_depart = util.convert_to_datetime(actual_deliv_depart)
-			actual_ship_depart = util.convert_to_datetime(actual_ship_depart)
+			pickup_arrive = util.convert_to_datetime(pickup_arrive)
+			delivery_arrive = util.convert_to_datetime(delivery_arrive)
+			delivery_depart = util.convert_to_datetime(delivery_depart)
+			pickup_depart = util.convert_to_datetime(pickup_depart)
 
 			fuel = util.convert_to_float(fuel)
 			line_haul = util.convert_to_float(line_haul)
 			tot_cost = util.convert_to_float(tot_cost)
 			tot_dist = util.convert_to_float(tot_dist)
 
-			otp = util.on_time(plan_ship, actual_ship)
-			otd = util.on_time(plan_deliv, actual_deliv)
+			otp = util.on_time(plan_ship, pickup_arrive)
+			otd = util.on_time(plan_deliv, delivery_arrive)
 
 			plan_ship_wk = plan_ship - timedelta(days=plan_ship.weekday())
 
-			shipped = 'Y' if isinstance(actual_ship, datetime) else 'N'
+			shipped = 'Y' if isinstance(pickup_arrive, datetime) else 'N'
 
 			key = (ship_id, dest_id)
 
@@ -320,10 +325,10 @@ class OrderLevel:
 				getattr(row, END_TIME_COL),
 				plan_ship_wk,
 				plan_ship,
-				actual_ship,
+				pickup_arrive,
 				otp,
 				plan_deliv,
-				actual_deliv,
+				delivery_arrive,
 				otd,
 				getattr(row, const.SRC_WHSE_ID_COL),
 				src_name,
@@ -362,8 +367,8 @@ class OrderLevel:
 				alloc_tot_cost,
 				self.ship_stop_count[ship_id],
 				#this is assuming I add the columns at the end of the table
-				actual_deliv_depart,
-				actual_ship_depart,
+				delivery_depart,
+				pickup_depart,
 				stopnumber
 				])
 			

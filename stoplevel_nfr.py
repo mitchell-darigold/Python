@@ -6,7 +6,7 @@ import constants as const
 import utilities as util
 
 
-REPORT_NAME = 'Stop Level Report'
+REPORT_NAME = 'Stop Level Report NFR'
 
 ACCS_COL = 'Accessorials'
 ACTUAL_ARRIVE_COL = 'ActualArrival'
@@ -42,7 +42,7 @@ HEADER_ROW = 2
 FIRST_DATA_ROW = 3
 
 
-class StopLevel:
+class StopLevel_NFR:
 	'''
 	'''
 

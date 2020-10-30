@@ -80,6 +80,10 @@ class Controller:
 							stop_level = StopLevel(df, name)
 							new_rows = stop_level.main()
 
+						elif self.model.tbl_name == const.STOP_LEVEL_NFR:
+							stop_level = StopLevel_NFR(df, name)
+							new_rows = stop_level.main()
+
 						else:
 							new_rows = [(name,) + r for r in df.itertuples(index=False)]
 						

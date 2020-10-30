@@ -60,6 +60,7 @@ DRIVER_LIST = 'DriverList'
 ORDER_LEVEL = 'OrderLevel'
 PLANTS = 'Plants'
 STOP_LEVEL = 'StopLevel'
+STOP_LEVEL_NFR = 'StopLevel_NFR'
 
 LATE_ORDERS_TABLE= 'LateOrders'
 REASON_CODES_TABLE = 'ReasonCodes'
@@ -69,7 +70,8 @@ FILE_TABLES = [
 	DAT,
 	EMP_TIME_DETAIL,
 	ORDER_LEVEL,
-	STOP_LEVEL
+	STOP_LEVEL,
+	STOP_LEVEL_NFR
 ]
 
 # column names in sql table
