@@ -57,9 +57,7 @@ class StopLevel_NFR:
 
 		export_date = self.df.at[const.EXPORT_DATE_ROW, REPORT_NAME]
 
-		plan_to = util.convert_to_datetime(
-			self.df.at[PLAN_TO_ROW, REPORT_NAME]
-			)
+		plan_to = 'see_file_name'
 
 		column_names = self.df.iloc[[HEADER_ROW]].values[0]
 		self.df.columns = util.clean_column_names(column_names)
