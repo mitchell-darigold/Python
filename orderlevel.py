@@ -55,6 +55,21 @@ TOT_COST_COL = 'TotalActualShipmentCost'
 WT_COL = 'Weight'
 WT_UOM_COL = 'WeightUOM'
 STOP_NUM_COL = 'StopNum'
+PLANNED_DELIVERY_ARRIVE = 'PlannedDeliveryArrive'
+PLANNED_DELIVERY_DEPART = 'PlannedDeliveryDepart'
+SHIP_ARRIVE = 'ShipArrive'
+SHIP_DEPART = 'ShipDepart'
+PLANNED_SHIP_ARRIVE = 'PlannedShipArrive'
+PLANNED_SHIP_DEPART = 'PlannedShipDepart'
+PLANNED_PICKUP_DEPART = 'PlannedPickupDepart'
+SHIP_DESTCODE = 'ShipDestCode'
+SHIP_DESTNAME = 'ShipDestName'
+SHIP_DESTCITY = 'ShipDestCity'
+SHIP_DESTSTATE = 'ShipDestState'
+SHIP_DESTZIP = 'ShipDestZip'
+SHIP_DESTCOUNTRY = 'ShipDestCountry'
+SHIP_DESTLAT = 'ShipDestLat'
+SHIP_DESTLON = 'ShipDestLon'
 
 '''
 	Columns from source files not utilized
@@ -248,7 +263,23 @@ class OrderLevel:
 			tot_dist = getattr(row, const.TOT_DIST_COL)
 			weight = getattr(row, WT_COL)
 			stopnumber = getattr(row, STOP_NUM_COL)
-			
+
+			planned_delivery_arrive = getattr(row, PLANNED_DELIVERY_ARRIVE)
+			planned_delivery_depart = getattr(row, PLANNED_DELIVERY_DEPART)
+			ship_arrive = getattr(row, SHIP_ARRIVE)
+			ship_depart = getattr(row, SHIP_DEPART)
+			planned_ship_arrive = getattr(row, PLANNED_SHIP_ARRIVE)
+			planned_ship_depart = getattr(row, PLANNED_SHIP_DEPART)
+			planned_pickup_depart = getattr(row, PLANNED_PICKUP_DEPART)
+			ship_destcode = getattr(row, SHIP_DESTCODE)
+			ship_destname = getattr(row, SHIP_DESTNAME)
+			ship_destcity = getattr(row, SHIP_DESTCITY)
+			ship_deststate = getattr(row, SHIP_DESTSTATE)
+			ship_destzip = getattr(row, SHIP_DESTZIP)
+			ship_destcountry = getattr(row, SHIP_DESTCOUNTRY)
+			ship_destlat = getattr(row, SHIP_DESTLAT)
+			ship_destlon = getattr(row, SHIP_DESTLON)
+
 			carrier_type = util.carrier_type(carrier)
 			
 			dest_city = dest_city.title()
@@ -269,6 +300,14 @@ class OrderLevel:
 			delivery_arrive = util.convert_to_datetime(delivery_arrive)
 			delivery_depart = util.convert_to_datetime(delivery_depart)
 			pickup_depart = util.convert_to_datetime(pickup_depart)
+
+			planned_delivery_arrive = util.convert_to_datetime(planned_delivery_arrive)
+			planned_delivery_depart = util.convert_to_datetime(planned_delivery_depart)
+			ship_arrive = util.convert_to_datetime(ship_arrive)
+			ship_depart = util.convert_to_datetime(ship_depart)
+			planned_ship_arrive = util.convert_to_datetime(planned_ship_arrive)
+			planned_ship_depart = util.convert_to_datetime(planned_ship_depart)
+			planned_pickup_depart = util.convert_to_datetime(planned_pickup_depart)
 
 			fuel = util.convert_to_float(fuel)
 			line_haul = util.convert_to_float(line_haul)
@@ -369,9 +408,22 @@ class OrderLevel:
 				#this is assuming I add the columns at the end of the table
 				delivery_depart,
 				pickup_depart,
-				stopnumber
+				stopnumber,
+				planned_delivery_arrive,
+				planned_delivery_depart,
+				ship_arrive,
+				ship_depart,
+				planned_ship_arrive,
+				planned_ship_depart,
+				planned_pickup_depart,
+				ship_destcode,
+				ship_destname,
+				ship_destcity,
+				ship_deststate,
+				ship_destzip,
+				ship_destcountry,
+				ship_destlat,
+				ship_destlon
 				])
 			
 		return rows
-
-
