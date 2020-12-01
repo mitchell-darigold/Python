@@ -62,14 +62,14 @@ SHIP_DEPART = 'ShipDepart'
 PLANNED_SHIP_ARRIVE = 'PlannedShipArrive'
 PLANNED_SHIP_DEPART = 'PlannedShipDepart'
 PLANNED_PICKUP_DEPART = 'PlannedPickupDepart'
-SHIP_DESTCODE = 'ShipDestCode'
-SHIP_DESTNAME = 'ShipDestName'
-SHIP_DESTCITY = 'ShipDestCity'
-SHIP_DESTSTATE = 'ShipDestState'
-SHIP_DESTZIP = 'ShipDestZip'
-SHIP_DESTCOUNTRY = 'ShipDestCountry'
-SHIP_DESTLAT = 'ShipDestLat'
-SHIP_DESTLON = 'ShipDestLon'
+SHIP_DESTCODE = 'Ship_DestCode'
+SHIP_DESTNAME = 'Ship_DestName'
+SHIP_DESTCITY = 'Ship_DestCity'
+SHIP_DESTSTATE = 'Ship_DestState'
+SHIP_DESTZIP = 'Ship_DestZip'
+SHIP_DESTCOUNTRY = 'Ship_DestCountry'
+SHIP_DESTLAT = 'Ship_DestLat'
+SHIP_DESTLON = 'Ship_DestLon'
 
 '''
 	Columns from source files not utilized
@@ -194,7 +194,7 @@ class OrderLevel:
 					dest_lon = getattr(row, DEST_LON_COL)
 
 					miles = self.pc_miler.get_miles_by_lat_lon(src_lat, src_lon, dest_lat, dest_lon)
-					
+
 
 					if miles:
 						search_by_zip = False
@@ -207,7 +207,7 @@ class OrderLevel:
 					dest_zip = getattr(row, DEST_ZIP_COL)
 
 					miles = self.pc_miler.get_miles_by_zip(src_zip, dest_zip)
-					
+
 
 					if miles:
 						search_by_city = False
@@ -216,7 +216,7 @@ class OrderLevel:
 				miles = self.pc_miler.get_miles_by_city_state_country(
 					src_city, src_state, src_country, dest_city, dest_state, dest_country
 					)
-					
+
 
 			if miles is not None:
 				self.miles[lane] = miles
