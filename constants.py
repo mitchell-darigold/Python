@@ -32,7 +32,7 @@ FILES_DIR = APP_DIR.joinpath('files')
 MEDIA_DIR = FILES_DIR.joinpath('media')
 
 # depending on the machine and exact path to shared folder. 
-DATA_DIR = Path('s:/supply_chain/analytics/data/')
+DATA_DIR = Path('c:/mitchell/recovery/')
 # DATA_DIR = Path('//dhqshareddata/Data/Supply_Chain/Analytics/Data')
 
 TEST_DATA_DIR = DATA_DIR.joinpath('Test')
