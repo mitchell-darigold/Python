@@ -70,6 +70,7 @@ SHIP_DESTZIP = 'Ship_DestZip'
 SHIP_DESTCOUNTRY = 'Ship_DestCountry'
 SHIP_DESTLAT = 'Ship_DestLat'
 SHIP_DESTLON = 'Ship_DestLon'
+TRAILER_ID = 'TrailerID'
 
 '''
 	Columns from source files not utilized
@@ -423,7 +424,8 @@ class OrderLevel:
 				ship_destzip,
 				ship_destcountry,
 				ship_destlat,
-				ship_destlon
+				ship_destlon,
+				getattr(row, TRAILER_ID)
 				])
 			
 		return rows
